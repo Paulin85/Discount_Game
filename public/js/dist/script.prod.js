@@ -1,0 +1,1 @@
+"use strict";$(document).ready(function(){$(document).on("click",".dropdown-menu",function(t){t.stopPropagation()}),0<$('[data-toggle="tooltip"]').length&&$('[data-toggle="tooltip"]').tooltip()});
