@@ -81,10 +81,18 @@
     </div>
   @endif
 
+  @if (session('danger'))
+    <div class="alert alert-danger">
+        {{ session('danger') }}
+    </div>
+  @endif
+
   <div class="row mb-2">
       @yield('content')
   </div>
 </div>
+
+@yield('paginate')
 
 
 <footer class="blog-footer">

@@ -56,7 +56,7 @@ class CartController extends Controller
         ]);
 
         if($validator->fails()) {
-            Session::flash('danger', 'La quantité du produit ne doit pas dépassé 6.');
+            Session::flash('danger', 'La quantité du produit ne peut pas être supérieur à 6.');
             return response()->json(['error' => 'Cart Quantity Has Not Been Updated']);
         };
 

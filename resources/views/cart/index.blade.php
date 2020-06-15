@@ -1,5 +1,10 @@
 @extends('layouts.master')
 
+@section('extra-meta')
+<meta name="csrf-token" content="{{ csrf_token() }}">
+@endsection
+
+
 @section('content')
 <div class="col-md-12">
     <h1>Mon panier</h1>
@@ -34,14 +39,20 @@
                             <tr>
                                 <th scope="row" class="border-0">
                                     <div class="p-2">
-                                        <img src="{{ $product->model->image }}" alt="" width="70" class="img-fluid rounded shadow-sm">
+                                        <img src="{{ asset('storage/' . $product->image) }}" alt="" width="70" class="img-fluid rounded shadow-sm">
                                         <div class="ml-3 d-inline-block align-middle">
-                                            <h5 class="mb-0"> <a href="{{ route('products.show', ['slug' => $product->model->slug]) }}" class="text-dark d-inline-block align-middle">{{ $product->model->title }}</a></h5><span class="text-muted font-weight-normal font-italic d-block">Category:</span>
+                                            <h5 class="mb-0"> <a href="{{ route('products.show', ['slug' => $product->model->slug]) }}" class="text-dark d-inline-block align-middle">{{ $product->model->title }}</a></h5>
                                         </div>
                                     </div>
                                 </th>
                                 <td class="border-0 align-middle"><strong>{{ $product->model->getPrice() }}</strong></td>
-                                <td class="border-0 align-middle"><strong>1</strong></td>
+                                <td class="border-0 align-middle">
+                                <select name="qty" id="qty" class="custom-select" data-id="{{ $product->rowId }}">
+                                        @for ($i = 1; $i <= 6; $i++)
+                                            <option value="{{ $i }}" {{ $i == $product->qty ? 'selected' : '' }}>{{ $i }}</option>
+                                        @endfor
+                                    </select>
+                                </td>
                                 <td class="border-0 align-middle">
                                     <form action="{{ route('cart.destroy', $product->rowId) }}" method="POST">
                                         @csrf
@@ -98,4 +109,34 @@
         <p>Votre panier est vide.</p>
     </div>
 @endif
+@endsection
+
+@section('extra-js')
+<script>
+    var qty = document.querySelectorAll('#qty');
+    Array.from(qty).forEach((element) => {
+        element.addEventListener('change', function () {
+            var rowId = element.getAttribute('data-id');
+            var token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+            fetch(`panier/${rowId}`,
+                {
+                    headers : {
+                        "Content-Type": "application/json",
+                        "Accept": "application/json, text-plain, */*",
+                        "X-Requested-With": "XMLHttpRequest",
+                        "X-CSRF-TOKEN": token 
+                    },
+                    method: 'patch',
+                    body: JSON.stringify({
+                        qty: this.value
+                    })
+                }).then((data) => {
+                console.log(data);
+                location.reload();
+            }).catch((error) => {
+                console.log(error)
+            });
+        });
+    });
+</script>
 @endsection
