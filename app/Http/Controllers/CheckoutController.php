@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use DateTime;
-use Illuminate\Support\Facades\Session;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Stripe\Stripe;
 use Stripe\PaymentIntent;
-use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use App\Order;
+use Datetime;
+use Illuminate\Support\Facades\Session;
+
 
 class CheckoutController extends Controller
 {
@@ -20,8 +21,9 @@ class CheckoutController extends Controller
      */
     public function index()
     {
+
         if(Cart::count() <= 0) {
-            return redirect()->route('products.index');
+            return redirect()->route('produits.affiche');
         }
 
         Stripe::setApiKey('sk_test_51GtC9IAsyJ6IN9fSXjGIFTJr32X2yysy6XvX7RBKMVBF9xUtBlVUR7VNeE2vibpaaijXu5sq2CHO5E7ZMLS8utiz007xDunrYL');
@@ -29,13 +31,14 @@ class CheckoutController extends Controller
         $intent = PaymentIntent::create([
             'amount' => round(Cart::total()),
             'currency' => 'eur',
-          ]);
+        ]);
 
         $clientSecret = Arr::get($intent, 'client_secret');
 
         return view('checkout.index', [
             'clientSecret' => $clientSecret
         ]);
+
     }
 
     /**
@@ -56,6 +59,7 @@ class CheckoutController extends Controller
      */
     public function store(Request $request)
     {
+
         $data = $request->json()->all();
 
         $order = new Order();
@@ -63,7 +67,7 @@ class CheckoutController extends Controller
         $order->payment_intent_id = $data['paymentIntent']['id'];
         $order->amount = $data['paymentIntent']['amount'];
 
-        $order->payment_created_at = (new DateTime())
+        $order->payment_created_at = (new Datetime())
             ->setTimestamp($data['paymentIntent']['created'])
             ->format('Y-m-d H:i:s');
 
@@ -71,7 +75,7 @@ class CheckoutController extends Controller
         $i = 0;
 
         foreach (Cart::content() as $product) {
-            $products['product_' . $i][] = $product->model->title;
+            $products['product_' . $i][] = $product->model->name;
             $products['product_' . $i][] = $product->model->price;
             $products['product_' . $i][] = $product->qty;
             $i++;
@@ -81,19 +85,24 @@ class CheckoutController extends Controller
         $order->user_id = 15;
         $order->save();
 
-        if ($data['paymentIntent']['status'] == 'succeeded') {
+
+        if($data['paymentIntent']['status'] === 'succeeded') {
             Cart::destroy();
             Session::flash('success', 'Votre commande a été traitée avec succès.');
             return response()->json(['success' => 'Payment Intent Succeeded']);
         } else {
             return response()->json(['error' => 'Payment Intent Not Succeeded']);
         }
+
     }
+
 
     public function thankYou()
     {
-        return Session::has('success') ? view('checkout.thankyou') : redirect()->route('products.index');
+        return Session::has('success') ? view('checkout.thankYou') : redirect()->route('products.index');
     }
+
+
 
     /**
      * Display the specified resource.

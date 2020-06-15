@@ -21,16 +21,16 @@ Route::get('/', function () {
 Route::get('/boutique', 'ProductController@index')->name('products.index');
 Route::get('/boutique/{slug}', 'ProductController@show')->name('products.show');
 
-/* Cart Routes*/
+/* Cart Routes */
 Route::get('/panier', 'CartController@index')->name('cart.index');
 Route::post('/panier/ajouter', 'CartController@store')->name('cart.store');
-Route::patch('/panier/{rowId}', 'CartController@update')->name('cart.update');
 Route::delete('/panier/{rowId}', 'CartController@destroy')->name('cart.destroy');
 
-/* Checkout Routes*/
+Route::get('/videpanier', function () {
+    Cart::destroy();
+});
 
-Route::get('/paiements', 'CheckoutController@index')->name('checkout.index');
-Route::get('/paiement', 'CheckoutController@store')->name('checkout.store');
+/* Checkout Routes */
+Route::get('/paiement', 'CheckoutController@index')->name('checkout.index');
+Route::post('/paiement2', 'CheckoutController@store')->name('checkout.store');
 Route::get('/merci', 'CheckoutController@thankYou')->name('checkout.thankYou');
-
-
