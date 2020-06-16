@@ -10,6 +10,9 @@
     @yield('extra-meta')
     <title>Discount Game</title>
 
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+
     @yield('extra-script')
     
 
@@ -24,6 +27,8 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <meta name="msapplication-config" content="/docs/4.5/assets/img/favicons/browserconfig.xml">
 <meta name="theme-color" content="#563d7c">
+
+<link rel="stylesheet" href="{{ asset('css/front.css') }}">
 
 
 
@@ -59,10 +64,8 @@
         <a class="blog-header-logo text-dark" href="{{ route('products.index') }}">Discount-Game</a>
       </div>
       <div class="col-4 d-flex justify-content-end align-items-center">
-        <a class="text-muted" href="#" aria-label="Search">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="mx-3" role="img" viewBox="0 0 24 24" focusable="false"><title>Rechercher un jeu</title><circle cx="10.5" cy="10.5" r="7.5"/><path d="M21 21l-5.2-5.2"/></svg>
-        </a>
-        <a class="btn btn-sm btn-outline-secondary" href="#">S'inscrire'</a>
+          @include('partials.search')
+          @include('partials.auth')
       </div>
     </div>
   </header>
@@ -85,6 +88,10 @@
     <div class="alert alert-danger">
         {{ session('danger') }}
     </div>
+  @endif
+
+  @if (request()->input('q'))
+    <h6>{{ $products->total() }} résultat(s) pour la recherche "{{ request()->q }}"</h6>
   @endif
 
   <div class="row mb-2">
