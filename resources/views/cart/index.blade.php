@@ -38,16 +38,15 @@
                             @foreach (Cart::content() as $product)
                             <tr>
                                 <th scope="row" class="border-0">
-                                    <div class="p-2">
-                                        <img src="{{ asset('storage/' . $product->image) }}" alt="" width="70" class="img-fluid rounded shadow-sm">
+                                    <div id="app" class="p-2">
                                         <div class="ml-3 d-inline-block align-middle">
-                                            <h5 class="mb-0"> <a href="{{ route('products.show', ['slug' => $product->model->slug]) }}" class="text-dark d-inline-block align-middle">{{ $product->model->title }}</a></h5>
+                                            <h6 class="mb-0"> <a href="{{ route('products.show', ['slug' => $product->model->slug]) }}" class="text-dark d-inline-block align-middle">{{ $product->model->name }}</a></h6>
                                         </div>
                                     </div>
                                 </th>
                                 <td class="border-0 align-middle"><strong>{{ $product->model->getPrice() }}</strong></td>
                                 <td class="border-0 align-middle">
-                                <select name="qty" id="qty" class="custom-select" data-id="{{ $product->rowId }}">
+                                <select name="qty" id="qty" class="custom-select" data-id="{{ $product->rowId }}" data-stock="{{ $product->model->stock }}">
                                         @for ($i = 1; $i <= 6; $i++)
                                             <option value="{{ $i }}" {{ $i == $product->qty ? 'selected' : '' }}>{{ $i }}</option>
                                         @endfor
@@ -117,6 +116,7 @@
     Array.from(qty).forEach((element) => {
         element.addEventListener('change', function () {
             var rowId = element.getAttribute('data-id');
+            var stock = element.getAttribute('data-stock');
             var token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
             fetch(`panier/${rowId}`,
                 {
@@ -128,7 +128,8 @@
                     },
                     method: 'patch',
                     body: JSON.stringify({
-                        qty: this.value
+                        qty: this.value,
+                        stock: stock
                     })
                 }).then((data) => {
                 console.log(data);

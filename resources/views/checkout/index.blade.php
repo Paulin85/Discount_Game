@@ -81,7 +81,6 @@
                     var token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
                     var form = document.getElementById('payment-form');
                     var url = form.action;
-                    var redirect = '/discount_game/public/merci';
 
                     fetch(
                             url,
@@ -97,6 +96,11 @@
                                 paymentIntent: paymentIntent
                             })
                             }).then((data) => {
+                                if (data.status === 400) {
+                                    var redirect = '/discount_game/public/boutique';
+                                } else {
+                                    var redirect = '/discount_game/public/merci';
+                                }
                             console.log(data)
                             window.location.href = redirect;
                             }).catch((error) => {
