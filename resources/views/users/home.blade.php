@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard</div>
+                <div class="card-header">Mes commandes</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -27,6 +27,7 @@
                                         <div>Nom du produit: {{ $product[0] }}</div>
                                         <div>Prix: {{ getPrice($product[1]) }}</div>
                                         <div>Quantité: {{ $product[2] }}</div>
+                                        <a href="{{route('order.pdf',$order)}}">Enregistrer en PDF</a>
                                     @endforeach
                             </div>
                         </div>

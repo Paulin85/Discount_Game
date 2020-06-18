@@ -45,4 +45,10 @@ Route::group(['prefix' => 'admin'], function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('users.home');
+Route::get('/compte/edit', 'HomeController@edit')->name('users.compte');
+Route::put('/compte/edit','HomeController@update')->name('users.update');
+
+//Route pour les factures
+Route::get('/pdf/{order}', ['as' => 'order.pdf', 'uses' => 'OrderController@orderPdf']);
+

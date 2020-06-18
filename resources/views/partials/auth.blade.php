@@ -15,7 +15,8 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('home') }}">Mes commandes</a>
+                                    <a class="dropdown-item" href="{{ route('users.home') }}">Mes commandes</a>
+                                    <a class="dropdown-item" href="{{ route('users.compte') }}">Mon compte</a>
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
