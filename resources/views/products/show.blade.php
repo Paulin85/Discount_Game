@@ -1,3 +1,14 @@
+
+
+<link rel="stylesheet" href="public/css/blog2.css">
+<style>
+	.formulaire{
+		text-align:center;
+		padding-left:350px;
+
+	}
+	</style>
+
 @extends('layouts.master')
 
 @section('content')
@@ -21,4 +32,27 @@
 					</div>
 				</div>
 			</div>
-@endsection
+	
+			<div class="formulaire">
+					<form action="/ma-page-de-traitement" method="post">
+				<div class="pb-4">
+					<input type="text" id="name" name="user_name" placeholder="Nom">
+				</div>
+				<div class="pb-4">
+					<select name="note" id="note-select">
+						<option>Choisissez une note...</option>
+						<option>5</option>
+						<option>4</option>
+						<option>3</option>
+						<option>2</option>
+						<option>1</option>
+					</select>
+				</div>
+				<div class="pb-3">
+					<textarea id="msg" name="user_message" rows="4" cols="60" placeholder="Ecrivez votre commentaire..."></textarea>
+				</div>
+				<div class="pb-4">
+					<input type="submit">
+				</div>
+			</form>
+			@endsection
