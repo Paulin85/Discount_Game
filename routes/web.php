@@ -46,3 +46,6 @@ Route::group(['prefix' => 'admin'], function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/formulaire', 'FormController@formulaire')->name('formulaire');
+Route::post('/formulaire/store', 'FormController@store')->name('formulaire.store');
+

@@ -27,6 +27,7 @@
                                         <div>Nom du produit: {{ $product[0] }}</div>
                                         <div>Prix: {{ getPrice($product[1]) }}</div>
                                         <div>Quantité: {{ $product[2] }}</div>
+                                        <a href="formulaire">Laisser un commentaire</a>
                                     @endforeach
                             </div>
                         </div>
