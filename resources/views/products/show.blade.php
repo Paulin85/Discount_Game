@@ -1,3 +1,8 @@
+
+
+<link rel="stylesheet" href="public/css/blog2.css">
+
+
 @extends('layouts.master')
 
 @section('content')
@@ -19,6 +24,9 @@
 					<div class="col-auto d-none d-lg-block">
 	  					<img width="300" height="375" src="{{ asset('storage/' . $product->image) }}">
 					</div>
+					
+			
 				</div>
 			</div>
-@endsection
+		
+			@endsection

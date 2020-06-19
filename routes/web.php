@@ -48,6 +48,10 @@ Route::group(['prefix' => 'admin'], function () {
 
 Auth::routes();
 
+//routes formulaire
+Route::get('/formulaire', 'FormController@formulaire')->name('formulaire');
+Route::post('/formulaire/store', 'FormController@store')->name('formulaire.store');
+//routes users
 Route::get('/home', 'HomeController@index')->name('users.home');
 Route::get('/compte/edit', 'HomeController@edit')->name('users.compte');
 Route::put('/compte/edit','HomeController@update')->name('users.update');

@@ -134,7 +134,8 @@ return [
     |
     */
 
-    'providers' => [
+    'providers' => [Barryvdh\DomPDF\ServiceProvider::class,
+
 
         /*
          * Laravel Framework Service Providers...
@@ -190,7 +191,8 @@ return [
     |
     */
 
-    'aliases' => [
+    'aliases' => ['PDF'       => Barryvdh\DomPDF\Facade::class,
+
 
         'App' => Illuminate\Support\Facades\App::class,
         'Arr' => Illuminate\Support\Arr::class,

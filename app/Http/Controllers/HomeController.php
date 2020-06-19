@@ -40,4 +40,6 @@ class HomeController extends Controller
         $user->save();
         return redirect()->route('users.home');
     }
+
+   
 }
