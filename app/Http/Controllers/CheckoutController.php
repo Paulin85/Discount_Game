@@ -11,6 +11,10 @@ use App\Order;
 use App\Product;
 use Datetime;
 use Illuminate\Support\Facades\Session;
+use App\Mail\OrderMail;
+use Illuminate\Support\Facades\Mail;
+
+
 
 
 class CheckoutController extends Controller
@@ -84,6 +88,7 @@ class CheckoutController extends Controller
             $products['product_' . $i][] = $product->model->name;
             $products['product_' . $i][] = $product->model->price;
             $products['product_' . $i][] = $product->qty;
+            $products['product_' . $i][] = $product->model->id;
             $i++;
         }
 
@@ -95,6 +100,7 @@ class CheckoutController extends Controller
         if($data['paymentIntent']['status'] === 'succeeded') {
             $this->updateStock();
             Cart::destroy();
+            Mail::to(Auth()->user()->email)->send(new OrderMail());
             Session::flash('success', 'Votre commande a été traitée avec succès.');
             return response()->json(['success' => 'Payment Intent Succeeded']);
         } else {

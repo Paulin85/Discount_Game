@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Mail\OrderMail;
+use Illuminate\Support\Facades\Mail;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -52,3 +55,8 @@ Route::put('/compte/edit','HomeController@update')->name('users.update');
 //Route pour les factures
 Route::get('/pdf/{order}', ['as' => 'order.pdf', 'uses' => 'OrderController@orderPdf']);
 
+//Route pour le mail
+Route::get('/email', function () {
+    Mail:: to('email@email.com')->send(new OrderMail());
+    return new OrderMail();
+});
