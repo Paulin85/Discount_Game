@@ -89,6 +89,7 @@ class CheckoutController extends Controller
             $products['product_' . $i][] = $product->model->price;
             $products['product_' . $i][] = $product->qty;
             $products['product_' . $i][] = $product->model->id;
+            $products['product_' . $i][] = $product->model->code;
             $i++;
         }
 

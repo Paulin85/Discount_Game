@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    @foreach (Auth()->user()->orders as $order)
+                    @foreach (Auth()->user()->orders->sortByDesc('created_at') as $order)
                         <div class="card">
                             <div class="card-header">
                                 Commande passé le {{ Carbon\carbon::parse
@@ -27,8 +27,8 @@
                                         <div>Nom du produit: {{ $product[0] }}</div>
                                         <div>Prix: {{ getPrice($product[1]) }}</div>
                                         <div>Quantité: {{ $product[2] }}</div>
-                                        <a href="formulaire">Laisser un commentaire</a>
-                                        <a href="{{route('order.pdf',$order)}}">Enregistrer en PDF</a>
+                                        <div><a href="formulaire">Donner votre avis</a></div>
+                                       <div> <a href="{{route('order.pdf',$order)}}">Enregistrer en PDF</a></div>
                                     @endforeach
                             </div>
                         </div>

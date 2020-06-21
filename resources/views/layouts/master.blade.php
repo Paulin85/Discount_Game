@@ -94,7 +94,7 @@
   </div>
 </div>
 
-
+@yield('paginate')
 
 <footer class="blog-footer">
   <p>Site créé par <a href="admin">Paulin Sirot</a> et <a href="admin">Mathias Dattin</a></p>

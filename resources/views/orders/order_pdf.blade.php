@@ -81,7 +81,7 @@
     								<td>{{ $product[0] }}</td>
     								<td class="text-center">{{ getPrice($product[1]) }}</td>
     								<td class="text-center">{{ $product[2] }}</td>
-                    <td class="text-center">{{ $product[2] }}</td>
+                    <td class="text-center">{{ $product[4] }}</td>
     							</tr>
                 @endforeach
     							<tr>
