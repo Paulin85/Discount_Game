@@ -38,8 +38,8 @@
                             @foreach (Cart::content() as $product)
                             <tr>
                                 <th scope="row" class="border-0">
-                                    <div id="app" class="p-2">
-                                        <div class="ml-3 d-inline-block align-middle">
+                                    <div id="app" class="p-2 ">
+                                        <div class=" ml-3 d-inline-block align-middle ">
                                             <h6 class="mb-0"> <a href="{{ route('products.show', ['slug' => $product->model->slug]) }}" class="text-dark d-inline-block align-middle">{{ $product->model->name }}</a></h6>
                                         </div>
                                     </div>
@@ -71,7 +71,6 @@
                     <div class="col-lg-12">
                     <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Détails de la commande </div>
                     <div class="p-4">
-                        <p class="font-italic mb-4">Shipping and additional costs are calculated based on values you have entered.</p>
                         <ul class="list-unstyled mb-4">
                         <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Sous-total </strong><strong>{{ getPrice(Cart::subtotal()) }}</strong></li>
                         {{-- <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Shipping and handling</strong><strong>$10.00</strong></li> --}}

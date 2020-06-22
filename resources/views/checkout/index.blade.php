@@ -97,9 +97,9 @@
                             })
                             }).then((data) => {
                                 if (data.status === 400) {
-                                    var redirect = '/discount_game/public/boutique';
+                                    var redirect = 'http://discount-game.herokuapp.com/boutique';
                                 } else {
-                                    var redirect = '/discount_game/public/merci';
+                                    var redirect = 'http://discount-game.herokuapp.com/merci';
                                 }
                             console.log(data)
                             window.location.href = redirect;
