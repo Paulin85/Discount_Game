@@ -20,7 +20,7 @@
 					<a href="{{ route('products.show', $product->slug) }}" class="stretched-link btn btn-info">Acheter</a>
 					</div>
 					<div class="col-auto d-none d-lg-block">
-	  					<img width="200" height="250" src="{{ asset('storage/app/public/' . $product->image) }}">
+	  					<img width="200" height="250" src="{{ $product->image) }}">
 					</div>
 				</div>
 			</div>
