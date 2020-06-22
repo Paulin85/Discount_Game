@@ -8,7 +8,7 @@
     <meta name="generator" content="Jekyll v4.0.1">
     
     @yield('extra-meta')
-    <title>Discount Game</title>
+    <title>Discount Gaming</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -51,7 +51,7 @@
     <!-- Custom styles for this template -->
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
     <!-- Custom styles for this template -->
-    <link href="css/blog.css" rel="stylesheet">
+    <link href="{{ asset('css/blog.css') }}" rel="stylesheet">
   </head>
   <body>
     
@@ -62,7 +62,7 @@
         <a class="text-muted" href="{{ route('cart.index') }}">Panier <span class="badge badge-pill badge-dark">{{ Cart::count() }}</span></a>
       </div>
       <div class="text-center">
-      <a href="{{ route('products.index') }}"><img class="icone" src="image/logo/icon.png"></a>
+      <a href="{{ route('products.index') }}"><img class="icone" src="{{ asset('image/logo/icon.png') }}"></a>
           </div>
       <div class="d-flex justify-content-end align-items-center">
           @include('partials.search')

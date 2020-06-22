@@ -32,7 +32,7 @@
 					</select>
 				</div>
 				<div class="pb-4">
-					<select name="products_id">
+					<select name="product_id">
 						@foreach (Auth()->user()->orders as $order)
 						@foreach (unserialize($order->products) as $product)
 						<option value="{{ $product[3] }}">{{ $product[0] }}</option>

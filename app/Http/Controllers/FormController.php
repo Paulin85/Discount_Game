@@ -18,10 +18,11 @@ class FormController extends Controller
         $formulaire->nom = $request->get('nom');
         $formulaire->note = $request->get('note');
         $formulaire->commentaire = $request->get('commentaire');
-        $formulaire->products_id = $request->get('products_id');
+        $formulaire->product_id = $request->get('product_id');
 
         $formulaire->save();
         return redirect()->route('products.index');
     }
-    //
+
+    
 }

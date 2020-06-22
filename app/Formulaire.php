@@ -10,7 +10,7 @@ class Formulaire extends Model
 
     public $timestamps = false;
 
-    protected $fillable=['Nom', 'Note', 'Commentaire', 'products_id'];
+    protected $fillable=['Nom', 'Note', 'Commentaire', 'product_id'];
     //
 
     public function product()

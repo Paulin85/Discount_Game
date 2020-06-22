@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\Formulaire;
 
 class ProductController extends Controller
 {
@@ -17,10 +18,12 @@ class ProductController extends Controller
     {
         $product = Product::where('slug', $slug)->first();
         $stock = $product->stock === 0 ? 'Indisponible' : 'Disponible';
+        $formulaire = Formulaire::where('product_id','like', $product->id);
 
         return view('products.show', [
             'product' => $product,
-            'stock' => $stock
+            'stock' => $stock,
+            'formulaire' => $formulaire
         ]);
     }
 

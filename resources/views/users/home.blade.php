@@ -27,9 +27,9 @@
                                         <div>Nom du produit: {{ $product[0] }}</div>
                                         <div>Prix: {{ getPrice($product[1]) }}</div>
                                         <div>Quantité: {{ $product[2] }}</div>
-                                        <div><a href="formulaire">Donner votre avis</a></div>
-                                       <div> <a href="{{route('order.pdf',$order)}}">Enregistrer en PDF</a></div>
                                     @endforeach
+                                    <div><a href="formulaire">Donner votre avis</a></div>
+                                    <div> <a href="{{route('order.pdf',$order)}}">Enregistrer en PDF</a></div>
                             </div>
                         </div>
                     @endforeach

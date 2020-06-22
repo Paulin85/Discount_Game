@@ -21,8 +21,8 @@ class CreateFormulaireTable extends Migration
             $table->string('Commentaire');
             $table->softDeletes();
 
-            $table->unsignedBigInteger('products_id');
-            $table->foreign('products_id')
+            $table->unsignedBigInteger('product_id');
+            $table->foreign('product_id')
                 ->references('id')
                 ->on('products')
                 ->onDelete('restrict')
