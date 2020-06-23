@@ -110,9 +110,9 @@ class CheckoutController extends Controller
     }
 
 
-    public function thankYou()
+    public function thankyou()
     {
-        return Session::has('success') ? view('checkout.thankYou') : redirect()->route('products.index');
+        return Session::has('success') ? view('checkout.thankyou') : redirect()->route('products.index');
     }
 
     private function checkIfNotAvailable()

@@ -38,7 +38,7 @@ Route::group(['middleware' => ['auth']], function () {
 Route::group(['middleware' => ['auth']], function () {
 Route::get('/paiement', 'CheckoutController@index')->name('checkout.index');
 Route::post('/paiement2', 'CheckoutController@store')->name('checkout.store');
-Route::get('/merci', 'CheckoutController@thankYou')->name('checkout.thankYou');
+Route::get('/merci', 'CheckoutController@thankou')->name('checkout.thankou');
 });
 
 
