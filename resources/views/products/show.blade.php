@@ -20,7 +20,7 @@
 					@endif
 					</div>
 					<div class="col-auto d-none d-lg-block">
-	  					<img width="300" height="375" src="{{ asset('public/storage/' . $product->image) }}">
+	  					<img width="300" height="375" src="{{ asset('app/public/' . $product->image) }}">
 					</div>								
 				</div>
 
