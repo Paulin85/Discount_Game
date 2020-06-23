@@ -20,7 +20,7 @@
 					<form action="{{ route('formulaire.store') }}" method="post">
 					@csrf
 				<div class="pb-4 pt-2">
-					<input type="text" id="nom" name="nom" placeholder="{{ Auth()->user()->name }}">
+					<input type="text" id="nom" name="nom" value="{{ Auth()->user()->name }}">
 				</div>
 				<div class="pb-4">
 					<select name="note">
