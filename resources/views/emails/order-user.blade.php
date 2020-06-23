@@ -9,9 +9,7 @@ Voici le code d'activation pour {{ $product[0] }} : {{ $product[4] }}
 
 Cliquez-ci dessous pour récupérer votre facture.
 
-@component('mail::button', ['url' => 'http://discount-game.herokuapp.com/home', 'color' => 'success'])
-Télécharger la facture (pdf).
-@endcomponent
+
 
 Merci, l'équipe Discount Gaming.<br>
 @endcomponent
