@@ -101,7 +101,6 @@ class CheckoutController extends Controller
         if($data['paymentIntent']['status'] === 'succeeded') {
             $this->updateStock();
             Cart::destroy();
-            Mail::to(Auth()->user()->email)->send(new OrderMail($order));
             Session::flash('success', 'Votre commande a été traitée avec succès.');
             return response()->json(['success' => 'Payment Intent Succeeded']);
         } else {
