@@ -15,9 +15,9 @@ class FormController extends Controller
     public function store(Request $request)
     {
         $formulaire = new Formulaire();
-        $formulaire->nom = $request->get('Nom');
-        $formulaire->note = $request->get('Note');
-        $formulaire->commentaire = $request->get('Commentaire');
+        $formulaire->Nom = $request->get('nom');
+        $formulaire->Note = $request->get('note');
+        $formulaire->Commentaire = $request->get('commentaire');
         $formulaire->product_id = $request->get('product_id');
 
         $formulaire->save();
