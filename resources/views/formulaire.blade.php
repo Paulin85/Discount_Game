@@ -23,7 +23,7 @@
 					<input type="text" id="nom" name="nom" value="{{ Auth()->user()->name }}">
 				</div>
 				<div class="pb-4">
-					<select name="note">
+					<select value="note" name="note">
 						<option>5</option>
 						<option>4</option>
 						<option>3</option>
@@ -32,7 +32,7 @@
 					</select>
 				</div>
 				<div class="pb-4">
-					<select name="product_id">
+					<select value="product_id" name="product_id">
 						@foreach (Auth()->user()->orders as $order)
 						@foreach (unserialize($order->products) as $product)
 						<option value="{{ $product[3] }}">{{ $product[0] }}</option>
@@ -41,7 +41,7 @@
 					</select>
 				</div>
 				<div class="pb-3">
-					<textarea id="commentaire" name="commentaire" rows="4" cols="60" placeholder="Ecrivez votre commentaire..."></textarea>
+					<textarea id="commentaire" value="commentaire" name="commentaire" rows="4" cols="60" placeholder="Ecrivez votre commentaire..."></textarea>
 				</div>
 				<div class="pb-4">
 					<input type="submit">

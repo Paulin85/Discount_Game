@@ -10,7 +10,7 @@
 
 @section('content')
     <div class="col-md-12">
-        <h1>Page de paiement</h1>
+        <h2 class="mt-5 mb-3">Veuillez entrer votre carte pour finaliser la commande.</h2>
         <div class="row">
             <div class="col-md-6">
                 <form action="{{ route('checkout.store') }}" emthod="POST" class="my-4" id="payment-form">
@@ -22,7 +22,7 @@
                     <!-- We'll put the error messages in this element -->
                     <div id="card-errors" role="alert"></div>
 
-                    <button class="btn btn-success mt-3" id="submit">Procéder au paiement ({{ getPrice(Cart::total()) }} )</button>
+                    <button class="btn btn-success mt-5" id="submit">Procéder au paiement ({{ getPrice(Cart::total()) }} )</button>
                 </form>
             </div>
         </div>
@@ -97,9 +97,9 @@
                             })
                             }).then((data) => {
                                 if (data.status === 400) {
-                                    var redirect = 'http://discount-game.herokuapp.com/boutique';
+                                    var redirect = '/discount_game/public/boutique';
                                 } else {
-                                    var redirect = 'http://discount-game.herokuapp.com/merci';
+                                    var redirect = '/discount_game/public/merci';
                                 }
                             console.log(data)
                             window.location.href = redirect;
